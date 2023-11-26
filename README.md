@@ -2,19 +2,22 @@
 
 ### 0. Introducción
 
-En este docker se crear un servidor OPC-UA sin encriptación y anonimo en Python3 con la libreria "asyncua". En el servidor se han creado tres objetos:
+En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Python3 con la librería "asyncua". En el servidor se han creado tres objetos:
 
-| Objeto | Id | Descripcion | 
-| :----: | :----: | :----: |  
-| Presion | ns=2;s=freeopcua.Tags.pressure | Se trata de una variable int64 que se actualiza cada segundo |
-| Temperatura | ns=2;s=freeopcua.Tags.pressure | Se trata de una variable int64 que se actualiza cada segundo |
-| Tension | ns=2;s=freeopcua.Tags.voltage | No se actualiza autoamticamente |
+| Objeto | Id | TipoDato | Descripción | 
+| :----: | :----: | :----: | :----: |  
+| Presión | ns=2;s=freeopcua.Tags.pressure | Doble | Se trata de una variable que se actualiza cada segundo |
+| Temperatura | ns=2;s=freeopcua.Tags.pressure | Doble | Se trata de una variable que se actualiza cada segundo |
+| Tensión | ns=2;s=freeopcua.Tags.voltage | Doble |No se actualiza automáticamente |
+
+Cuidado al escribir alguno de estos objetos, que solo el objeto tensión no se actualiza de forma automática
+
 
 Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escribirlos
 
 ### 1. Microservicios empleados
 
-| Microservicio      | Descripcion | Puerto | GUI |
+| Microservicio      | Descripción | Puerto | GUI |
 | :----:             |    :----:   |    :----:   |   :----:   |
 | Python3    | Servidor OPC-UA        | 4840 | - |
 | Jupyter Notebook   | Plataforma web para realizar operar OPC-UA como cliente  | 8888 | http://localhost:8888 |
