@@ -14,10 +14,10 @@ Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escri
 
 ### 1. Microservicios empleados
 
-| Microservicio      | Descripcion |  GUI |
-| :----:             |    :----:   |    :----:   |
-| Python3    | Servidor OPC-UA        | - |
-| Jupyter Notebook   | Plataforma web para realizar operar OPC-UA como cliente  | http://localhost:8888 |
+| Microservicio      | Descripcion | Puerto | GUI |
+| :----:             |    :----:   |    :----:   |   :----:   |
+| Python3    | Servidor OPC-UA        | 4840 | - |
+| Jupyter Notebook   | Plataforma web para realizar operar OPC-UA como cliente  | 8888 | http://localhost:8888 |
 
 
 ### 2. Levantar los contenedores
