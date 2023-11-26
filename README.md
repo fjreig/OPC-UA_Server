@@ -25,6 +25,7 @@ Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escri
 
 ### 3. Comprobamos que se ha montado correctamente el servidor OPC-UA
 
+![Architecture](pantallazo.png)
 
 ### 4. Accedemos a jupyter notebook
 
