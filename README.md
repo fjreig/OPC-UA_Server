@@ -10,9 +10,6 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | Temperatura | ns=2;s=freeopcua.Tags.pressure | Doble | Se trata de una variable que se actualiza cada segundo |
 | Tensión | ns=2;s=freeopcua.Tags.voltage | Doble |No se actualiza automáticamente |
 
-Cuidado al escribir alguno de estos objetos, que solo el objeto tensión no se actualiza de forma automática
-
-
 Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escribirlos
 
 ### 1. Microservicios empleados
@@ -22,11 +19,12 @@ Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escri
 | Python3    | Servidor OPC-UA        | 4840 | - |
 | Jupyter Notebook   | Plataforma web para realizar operar OPC-UA como cliente  | 8888 | http://localhost:8888 |
 
-
 ### 2. Levantar los contenedores
 ```docker compose up -d```
 
 ### 3. Comprobamos que se ha montado correctamente el servidor OPC-UA
+
+Cuando se accede al servidor se pueden ver los tres objetos creados y leer el valor actual y escribirlos. Recordar que como la tensión y la presión se actualiza automáticamente no se puede quedará el valor escrito.
 
 ![Architecture](pantallazo.png)
 
