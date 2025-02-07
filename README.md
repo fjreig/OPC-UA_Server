@@ -16,7 +16,9 @@ Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escri
 
 | Microservicio      | Descripción | Puerto | GUI |
 | :----:             |    :----:   |    :----:   |   :----:   |
-| Python3    | Servidor OPC-UA        | 4840 | - |
+| Server    | Servidor OPC-UA        | 4840 | - |
+| BBDD    | Postgres        | 5432 | - |
+| API   | API  | 8888 | http://localhost/docs |
 | Jupyter Notebook   | Plataforma web para realizar operar OPC-UA como cliente  | 8888 | http://localhost:8888 |
 
 ### 2. Levantar los contenedores
