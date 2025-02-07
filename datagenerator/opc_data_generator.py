@@ -17,6 +17,7 @@ async def main():
     ns = "ns=2;s=freeopcua.Tags.pressure"
     ns2 = "ns=2;s=freeopcua.Tags.temperature"
     ns4 = "ns=2;s=freeopcua.Tags.voltage"
+    ns6 = "ns=2;s=freeopcua.Tags.vs1"
     
     min_val = -0.5
     max_val = 0.6
@@ -27,10 +28,13 @@ async def main():
     pressure = await myobj.add_variable(ns, "Presion", 10.5)
     temperature = await myobj.add_variable(ns2, "Temperatura", 26.7)
     voltage = await myobj.add_variable(ns4, "Tension", 0)
+    vs1 = await myobj.add_variable(ns6, "vs1", 0)
+
     # Set MyVariable to be writable by clients
     await pressure.set_writable()
     await temperature.set_writable()
     await voltage.set_writable()
+    await vs1.set_writable()
     opcs = [ pressure, temperature ]
   
     _logger.info("Starting server!")

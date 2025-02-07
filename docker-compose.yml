@@ -1,9 +1,25 @@
 services:
+  api:
+    container_name: api
+    image: frreimon/api:2.7
+    restart: always
+    ports:
+      - "80:8000"
+    volumes:
+      - ./API/app:/code/app
+    env_file:
+      - .env
+    networks:
+      opc_network:
+        ipv4_address: 10.116.0.4
+
   opcua_server:
     build:
         dockerfile: Dockerfile
     container_name: opc_data_generator
     restart: on-failure
+    volumes:
+      - ./datagenerator:/opt/opc_mockup/datagenerator
     ports:
       - "4840:4840"
     networks:
@@ -20,6 +36,19 @@ services:
     networks:
       opc_network:
         ipv4_address: 10.116.0.3
+  
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    networks:
+      opc_network:
+        ipv4_address: 10.116.0.5
 
 networks:
   opc_network:

@@ -38,3 +38,7 @@ Cuando se accede al servidor se pueden ver los tres objetos creados y leer el va
 | :----:             |    :----:   |
 | Client_Read    | El Script lee varias varibles del server OPC-UA       | 
 | Client_Write   | El scropt escribe varias variables del server OPC-UA       |
+
+
+
+https://github.com/FreeOpcUa/python-opcua/tree/master
