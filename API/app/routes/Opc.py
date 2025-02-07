@@ -41,7 +41,7 @@ async def read_notification_id(variable: str, db: Session = Depends(get_db)):
     return({"Variable": variable, 'Valor': value})
 
 @router.post("/Write/{variable}/{valor}", summary="Modificar variable")
-async def create_notification(variable: str, valor: int):
+async def create_notification(variable: str, valor: float):
     node = client.get_node(variable)
     value1 = node.get_value()
     try:

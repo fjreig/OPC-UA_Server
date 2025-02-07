@@ -16,7 +16,7 @@ services:
   opcua_server:
     build:
         dockerfile: Dockerfile
-    container_name: opc_data_generator
+    container_name: server_opc
     restart: on-failure
     volumes:
       - ./datagenerator:/opt/opc_mockup/datagenerator

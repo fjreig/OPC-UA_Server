@@ -27,8 +27,8 @@ async def main():
     myobj = await server.nodes.objects.add_object(idx, "MyObject")
     pressure = await myobj.add_variable(ns, "Presion", 10.5)
     temperature = await myobj.add_variable(ns2, "Temperatura", 26.7)
-    voltage = await myobj.add_variable(ns4, "Tension", 0)
-    vs1 = await myobj.add_variable(ns6, "vs1", 0)
+    voltage = await myobj.add_variable(ns4, "Tension", 0.0)
+    vs1 = await myobj.add_variable(ns6, "vs1", 0.0)
 
     # Set MyVariable to be writable by clients
     await pressure.set_writable()
