@@ -6,9 +6,10 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 
 | Objeto | Id | TipoDato | Descripción | 
 | :----: | :----: | :----: | :----: |  
-| Presión | ns=2;s=freeopcua.Tags.pressure | Doble | Se trata de una variable que se actualiza cada segundo |
-| Temperatura | ns=2;s=freeopcua.Tags.pressure | Doble | Se trata de una variable que se actualiza cada segundo |
-| Tensión | ns=2;s=freeopcua.Tags.voltage | Doble |No se actualiza automáticamente |
+| PA | ns=2;s=Inversor1.PA | Doble | No se actualiza automáticamente |
+| EA | ns=2;s=Inversor1.EA | Doble | No se actualiza automáticamente |
+| EA_hoy | ns=2;s=Inversor1.EA_hoy | Doble | No se actualiza automáticamente |
+| Vs1 | ns=2;s=Inversor1.EA_hoy | Doble | Se trata de una variable que se actualiza cada segundo |
 
 Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escribirlos
 
@@ -40,7 +41,6 @@ Cuando se accede al servidor se pueden ver los tres objetos creados y leer el va
 | :----:             |    :----:   |
 | Client_Read    | El Script lee varias varibles del server OPC-UA       | 
 | Client_Write   | El scropt escribe varias variables del server OPC-UA       |
-
 
 
 https://github.com/FreeOpcUa/python-opcua/tree/master
