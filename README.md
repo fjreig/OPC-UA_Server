@@ -9,7 +9,7 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | PA | ns=2;s=Inversor1.PA | Doble | No se actualiza automáticamente |
 | EA | ns=2;s=Inversor1.EA | Doble | No se actualiza automáticamente |
 | EA_hoy | ns=2;s=Inversor1.EA_hoy | Doble | No se actualiza automáticamente |
-| Vs1 | ns=2;s=Inversor1.EA_hoy | Doble | Se trata de una variable que se actualiza cada segundo |
+| Vs1 | ns=2;s=Inversor1.vs1 | Doble | Se trata de una variable que se actualiza cada segundo |
 
 Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escribirlos
 
