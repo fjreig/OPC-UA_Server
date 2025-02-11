@@ -11,6 +11,18 @@ vs_max_val = 700
 is_min_val = 7
 is_max_val = 12
 
+temp_min_val = 10
+temp_max_val = 35
+
+rad_min_val = 360
+rad_max_val = 1200
+
+tensiones_min_val = 380
+tensiones_max_val = 410
+
+intensidades_min_val = 10
+intensidades_max_val = 45
+
 async def main():
     #_logger = logging.getLogger("asyncua")
     # setup our server
