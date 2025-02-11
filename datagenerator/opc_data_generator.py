@@ -8,7 +8,7 @@ async def main():
     # setup our server
     server = Server()
     await server.init()
-    server.set_endpoint("opc.tcp://0.0.0.0:4840/freeopcua/server/")
+    server.set_endpoint("opc.tcp://0.0.0.0:4840/pavener/server/")
 
     # setup our own namespace, not really necessary but should as spec
     uri = "http://examples.freeopcua.github.io"
@@ -32,7 +32,7 @@ async def main():
 
     # populating our address space
     # server.nodes, contains links to very common nodes like objects and root
-    myobj = await server.nodes.objects.add_object(idx, "MyObject")
+    myobj = await server.nodes.objects.add_object(idx, "Inversor1")
     Inversor1_PA = await myobj.add_variable(ns, "PA", 10.5)
     Inversor1_EA = await myobj.add_variable(ns2, "EA", 26.7)
     Inversor1_EA_hoy = await myobj.add_variable(ns4, "EA_hoy", 0.0)
