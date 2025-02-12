@@ -5,7 +5,10 @@
 CREATE TABLE IF NOT EXISTS opc (
   id serial,
   fecha timestamp,
-  variable varchar,
-  valor float,
+  vs1 float,
+  vs2 float,
+  vs3 float,
+  vs4 float,
+  vs5 float,
   PRIMARY KEY (id)
 );
