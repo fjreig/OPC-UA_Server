@@ -1,8 +1,8 @@
 services:
   opcua_server:
+    container_name: server_opc
     build:
         dockerfile: Dockerfile
-    container_name: server_opc
     restart: on-failure
     volumes:
       - ./datagenerator:/opt/opc_mockup/datagenerator
@@ -13,12 +13,14 @@ services:
         ipv4_address: 10.116.0.2
 
   jupyter:
+    container_name: jupyter_notebook
     image: jupyter/minimal-notebook
     volumes:
       - ./work:/home/jovyan/work
     ports:
       - 8888:8888
-    container_name: jupyter_notebook
+    depends_on:
+      - opcua_server
     networks:
       opc_network:
         ipv4_address: 10.116.0.3
@@ -33,6 +35,8 @@ services:
       - ./API/app:/code/app
     env_file:
       - .env
+    depends_on:
+      - opcua_server
     networks:
       opc_network:
         ipv4_address: 10.116.0.4
@@ -67,6 +71,8 @@ services:
       SINGLE_USER_CREDENTIALS_USERNAME: "admin"
       SINGLE_USER_CREDENTIALS_PASSWORD: "ctsBtRBKHRAx69EqUghvvgEvjnaLjFEB"
       NIFI_WEB_HTTP_PORT: '8081'
+    depends_on:
+      - opcua_server
     networks:
       opc_network:
         ipv4_address: 10.116.0.6
