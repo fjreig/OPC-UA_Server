@@ -1,0 +1,4 @@
+ns=2;s=EMI1.Rad1
+ns=2;s=EMI1.Rad2
+ns=2;s=EMI1.Tamb
+ns=2;s=EMI1.Tpanel

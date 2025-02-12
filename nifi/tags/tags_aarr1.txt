@@ -1,0 +1,11 @@
+ns=2;s=AARR1.PA1
+ns=2;s=AARR1.PA2
+ns=2;s=AARR1.PA3
+ns=2;s=AARR1.PA
+ns=2;s=AARR1.EA
+ns=2;s=AARR1.V1
+ns=2;s=AARR1.V2
+ns=2;s=AARR1.V3
+ns=2;s=AARR1.I1
+ns=2;s=AARR1.I2
+ns=2;s=AARR1.I3

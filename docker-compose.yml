@@ -60,9 +60,9 @@ services:
     image: apache/nifi:1.28.0
     volumes:
       - ./nifi/nifi-opcua.nar:/opt/nifi/nifi-current/extensions/nifi-opcua.nar
-      - ./nifi/tags.txt:/opt/nifi/nifi-current/opcua/tags.txt
+      - ./nifi/tags:/opt/nifi/nifi-current/opcua/tags
       - ./nifi/postgresql-42.7.3.jar:/opt/nifi/nifi-current/bbdd/postgresql-42.7.3.jar
-      - ./nifi/opc_template.xml:/opt/nifi/nifi-current/conf/templates/opc_template.xml
+      - ./nifi/templates:/opt/nifi/nifi-current/conf/templates/
     environment:
       SINGLE_USER_CREDENTIALS_USERNAME: "admin"
       SINGLE_USER_CREDENTIALS_PASSWORD: "ctsBtRBKHRAx69EqUghvvgEvjnaLjFEB"
