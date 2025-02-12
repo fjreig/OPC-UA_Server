@@ -4,7 +4,7 @@
 
 En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Python3 con la librería "asyncua".
 
-#### 0.1. Inversor
+#### Inversor
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
@@ -42,7 +42,7 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | Is9 | ns=2;s=Inversor1.is9 | Doble |
 | Is10 | ns=2;s=Inversor1.is10 | Doble |
 
-#### 0.2. AARR
+#### AARR
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
@@ -58,7 +58,7 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | I2 | ns=2;s=AARR1.I2 | Doble |
 | I3 | ns=2;s=AARR1.I3 | Doble |
 
-#### 0.3. EMI
+#### EMI
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
