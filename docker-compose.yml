@@ -1,18 +1,4 @@
 services:
-  api:
-    container_name: api
-    image: frreimon/api:2.7
-    restart: always
-    ports:
-      - "80:8000"
-    volumes:
-      - ./API/app:/code/app
-    env_file:
-      - .env
-    networks:
-      opc_network:
-        ipv4_address: 10.116.0.4
-
   opcua_server:
     build:
         dockerfile: Dockerfile
@@ -37,6 +23,20 @@ services:
       opc_network:
         ipv4_address: 10.116.0.3
   
+  api:
+    container_name: api
+    image: frreimon/api:2.7
+    restart: always
+    ports:
+      - "80:8000"
+    volumes:
+      - ./API/app:/code/app
+    env_file:
+      - .env
+    networks:
+      opc_network:
+        ipv4_address: 10.116.0.4
+  
   postgres:
     container_name: postgres
     image: postgres
@@ -59,14 +59,14 @@ services:
     volumes:
       - ./nifi/nifi-opcua.nar:/opt/nifi/nifi-current/extensions/nifi-opcua.nar
       - ./nifi/tags.txt:/opt/nifi/nifi-current/opcua/tags.txt
-    
+      - ./nifi/postgresql-42.7.3.jar:/opt/nifi/nifi-current/bbdd/postgresql-42.7.3.jar
     environment:
       SINGLE_USER_CREDENTIALS_USERNAME: "admin"
       SINGLE_USER_CREDENTIALS_PASSWORD: "ctsBtRBKHRAx69EqUghvvgEvjnaLjFEB"
       NIFI_WEB_HTTP_PORT: '8081'
     networks:
       opc_network:
-        ipv4_address: 10.116.0.5
+        ipv4_address: 10.116.0.6
 
 networks:
   opc_network:
