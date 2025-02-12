@@ -4,7 +4,7 @@
 
 En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Python3 con la librería "asyncua".
 
-#### 1. Inversor
+#### 0.1. Inversor
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
@@ -42,7 +42,7 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | Is9 | ns=2;s=Inversor1.is9 | Doble |
 | Is10 | ns=2;s=Inversor1.is10 | Doble |
 
-#### 2. AARR
+#### 0.2. AARR
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
@@ -58,7 +58,7 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | I2 | ns=2;s=AARR1.I2 | Doble |
 | I3 | ns=2;s=AARR1.I3 | Doble |
 
-#### 3. EMI
+#### 0.3. EMI
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
@@ -86,16 +86,9 @@ Cuando se accede al servidor se pueden ver los tres objetos creados y leer el va
 
 ![Architecture](pantallazo.png)
 
-### 4. Accedemos a jupyter notebook
-
-```http://localhost:8888```
-
-### 5. Ejecutamos los siguientes Scripts
+### 4. Ejecutamos los siguientes Scripts
 
 | Script      | Descripcion | 
 | :----:             |    :----:   |
 | Client_Read    | El Script lee varias varibles del server OPC-UA       | 
 | Client_Write   | El scropt escribe varias variables del server OPC-UA       |
-
-
-https://github.com/FreeOpcUa/python-opcua/tree/master
