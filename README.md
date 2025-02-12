@@ -82,6 +82,6 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 
 ### 3. Comprobamos que se ha montado correctamente el servidor OPC-UA
 
-Cuando se accede al servidor se pueden ver los tres objetos creados y leer el valor actual y escribirlos. Recordar que como la tensión y la presión se actualiza automáticamente no se puede quedará el valor escrito.
+Cuando se accede al servidor se pueden ver los objetos creados y leer el valor actual y escribirlos. 
 
 ![Architecture](pics/pantallazo1.png)
