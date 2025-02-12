@@ -56,16 +56,16 @@ async def create_notification(variable: str, valor: float):
     return({"Variable": variable, 'Valor_anterior': value1, 'Valor': value2})
 
 @router.post("/Write/Inversor/{num_equipo}", summary="Modificar variables del Inversor")
-async def create_notification(num_equipo: int,data: InversorRequest = Body(...)):
+async def create_notification(num_equipo: int, data: InversorRequest = Body(...)):
     escribirInversor(num_equipo, data)
     return(data)
 
 @router.post("/Write/AARR/{num_equipo}", summary="Modificar variable del AARR")
-async def create_notification(num_equipo: int,data: AARRRequest = Body(...)):
+async def create_notification(num_equipo: int, data: AARRRequest = Body(...)):
     escribirAARR(num_equipo, data)
     return(data)
 
 @router.post("/Write/EMI/{num_equipo}", summary="Modificar variable de la EMI")
-async def create_notification(num_equipo: int,data: EMIRequest = Body(...)):
+async def create_notification(num_equipo: int, data: EMIRequest = Body(...)):
     escribirEMI(num_equipo, data)
     return(data)
