@@ -22,19 +22,18 @@ async def read_notification_id():
     root = client.get_root_node()
     children = root.get_children()
     child_of_children=children[0].get_children()
-    c_child_of_children=child_of_children[2].get_children()
     variables = {}
-    for i in range(len(c_child_of_children)):
-        variables.update({i : str(client.get_node(c_child_of_children[i]))})
+    for x in range(2, len(child_of_children)):
+        c_child_of_children=child_of_children[x].get_children()
+        for i in range(len(c_child_of_children)):
+            variables.update({i : str(client.get_node(c_child_of_children[i]))})
     return(variables)
 
 @router.get("/Read/{variable}", summary="Leer variable")
 async def read_notification_id(variable: str, db: Session = Depends(get_db)):
     value = client.get_node(variable)
     value = value.get_value()
-    result = Modelo_opc(
-        variable = variable,
-        valor = value)
+    result = Modelo_opc(variable = variable,valor = value)
     db.add(result)
     db.commit()
     db.refresh(result)
