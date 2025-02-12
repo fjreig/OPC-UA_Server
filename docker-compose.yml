@@ -50,6 +50,24 @@ services:
       opc_network:
         ipv4_address: 10.116.0.5
 
+  nifi:
+    container_name: nifi
+    ports:
+      - 8443:8443
+      - 8088:8081
+    image: apache/nifi:1.28.0
+    volumes:
+      - ./nifi/nifi-opcua.nar:/opt/nifi/nifi-current/extensions/nifi-opcua.nar
+      - ./nifi/tags.txt:/opt/nifi/nifi-current/opcua/tags.txt
+    
+    environment:
+      SINGLE_USER_CREDENTIALS_USERNAME: "admin"
+      SINGLE_USER_CREDENTIALS_PASSWORD: "ctsBtRBKHRAx69EqUghvvgEvjnaLjFEB"
+      NIFI_WEB_HTTP_PORT: '8081'
+    networks:
+      opc_network:
+        ipv4_address: 10.116.0.5
+
 networks:
   opc_network:
     driver: bridge
