@@ -2,7 +2,9 @@
 
 ### 0. Introducción
 
-En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Python3 con la librería "asyncua". En el servidor se han creado tres objetos:
+En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Python3 con la librería "asyncua".
+
+#### 1. Inversor
 
 | Objeto | Id | TipoDato |
 | :----: | :----: | :----: |
@@ -40,7 +42,30 @@ En este docker se creará un servidor OPC-UA sin encriptación y anónimo en Pyt
 | Is9 | ns=2;s=Inversor1.is9 | Doble |
 | Is10 | ns=2;s=Inversor1.is10 | Doble |
 
-Mediante el docker de Jupyter-Notebook se pueden consultar estos valores y escribirlos
+#### 2. AARR
+
+| Objeto | Id | TipoDato |
+| :----: | :----: | :----: |
+| PA | ns=2;s=AARR1.PA | Doble |
+| PA1 | ns=2;s=AARR1.PA1 | Doble |
+| PA2 | ns=2;s=AARR1.PA2 | Doble |
+| PA3 | ns=2;s=AARR1.PA3 | Doble |
+| EA | ns=2;s=AARR1.EA | Doble |
+| V1 | ns=2;s=AARR1.V1 | Doble |
+| V2 | ns=2;s=AARR1.V2 | Doble |
+| V3 | ns=2;s=AARR1.V3 | Doble |
+| I1 | ns=2;s=AARR1.I1 | Doble |
+| I2 | ns=2;s=AARR1.I2 | Doble |
+| I3 | ns=2;s=AARR1.I3 | Doble |
+
+#### 3. EMI
+
+| Objeto | Id | TipoDato |
+| :----: | :----: | :----: |
+| Rad1 | ns=2;s=EMI1.Rad1 | Doble |
+| Rad2 | ns=2;s=EMI1.Rad2 | Doble |
+| T_amb | ns=2;s=EMI1.T_amb | Doble |
+| T_panel | ns=2;s=EMI1.T_panel | Doble |
 
 ### 1. Microservicios empleados
 
