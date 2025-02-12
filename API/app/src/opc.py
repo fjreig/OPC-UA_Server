@@ -3,6 +3,13 @@ from app.conexion import cliente_opc_create
 
 client = cliente_opc_create()
 
+variables_inversor = ["PA","PA_peak","EA","EA_hoy","Estado","Temperatura",
+    "Raislamiento","V1","V2","V3","I1","I2", "I3",
+    "vs1","vs2","vs3","vs4","vs5","vs6","vs7","vs8","vs9","vs10",
+    "is1","is2","is3","is4","is5","is6","is7","is8","is9","is10"]
+variables_aarr = ["PA","PA1","PA2","PA3","EA","V1","V2","V3","I1","I2", "I3"]
+variables_emi = ["Rad1","Rad2","Tamb","Tpanel"]
+
 def obtenerNodos():
     root = client.get_root_node()
     children = root.get_children()
@@ -30,32 +37,56 @@ def escribirNodo(valor, variable):
     return(value1, value2)
 
 def ObtenerInversor(num_equipo):
-    variables = ["PA","PA_peak","EA","EA_hoy","Estado","Temperatura",
-        "Raislamiento","V1","V2","V3","I1","I2", "I3",
-        "vs1","vs2","vs3","vs4","vs5","vs6","vs7","vs8","vs9","vs10",
-        "is1","is2","is3","is4","is5","is6","is7","is8","is9","is10"]
     definicion = "ns=2;s=Inversor" + str(num_equipo) + "."
-    variables = [definicion + s for s in variables]
+    variables = [definicion + s for s in variables_inversor]
     data = {}
     for i in range(len(variables)):
         data.update({variables[i]:client.get_node((variables[i])).get_value()})
     return(data)
 
 def ObtenerAARR(num_equipo):
-    variables = ["PA","PA1","PA2","PA3","EA",
-        "V1","V2","V3","I1","I2", "I3"]
     definicion = "ns=2;s=AARR" + str(num_equipo) + "."
-    variables = [definicion + s for s in variables]
+    variables = [definicion + s for s in variables_aarr]
     data = {}
     for i in range(len(variables)):
         data.update({variables[i]:client.get_node((variables[i])).get_value()})
     return(data)
 
 def ObtenerEMI(num_equipo):
-    variables = ["Rad1","Rad2","Tamb","Tpanel"]
     definicion = "ns=2;s=EMI" + str(num_equipo) + "."
-    variables = [definicion + s for s in variables]
+    variables = [definicion + s for s in variables_emi]
     data = {}
     for i in range(len(variables)):
         data.update({variables[i]:client.get_node((variables[i])).get_value()})
     return(data)
+
+def escribirInversor(num_equipo, data):
+    data = data.__dict__
+    definicion = "ns=2;s=Inversor" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_inversor]
+    for i in range(len(data)):
+        #print({variables[i]:data[variables_inversor[i]]})
+        try:
+            client.get_node((variables[i])).set_value(ua.DataValue(ua.Variant(data[variables_inversor[i]], ua.VariantType.Double)))
+        except:
+            print({variables[i]:data[variables_inversor[i]]})
+
+def escribirAARR(num_equipo, data):
+    data = data.__dict__
+    definicion = "ns=2;s=AARR" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_aarr]
+    for i in range(len(data)):
+        try:
+            client.get_node((variables[i])).set_value(ua.DataValue(ua.Variant(data[variables_aarr[i]], ua.VariantType.Double)))
+        except:
+            print({variables[i]:data[variables_aarr[i]]})
+
+def escribirEMI(num_equipo, data):
+    data = data.__dict__
+    definicion = "ns=2;s=EMI" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_emi]
+    for i in range(len(data)):
+        try:
+            client.get_node((variables[i])).set_value(ua.DataValue(ua.Variant(data[variables_emi[i]], ua.VariantType.Double)))
+        except:
+            print({variables[i]:data[variables_emi[i]]})
