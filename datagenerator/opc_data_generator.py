@@ -3,7 +3,7 @@ import logging
 import random
 from asyncua import Server, ua
 
-from equipos import InversorSchema, AARRSchema, EMISchema
+from equipos import InversorSchema, AARRSchema, EMISchema, PCSSchema, BateriaSchema
 
 vs_min_val = 500
 vs_max_val = 700

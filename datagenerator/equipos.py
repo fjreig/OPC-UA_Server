@@ -90,3 +90,85 @@ async def EMISchema(server, idx, nombre_emi):
     radiaciones_emi = [ Rad1, Rad2 ]
     temperaturas_emi = [ Tamb, Tpanel ]
     return(radiaciones_emi, temperaturas_emi)
+
+async def PCSSchema(server, idx, nombre_pcs):    
+    myobj = await server.nodes.objects.add_object(idx, nombre_pcs)
+
+    PA_CARGA = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".pa_carga", "pa_carga", 0.0)
+    PA_DESCARGA = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".pa_descarga", "pa_descarga", 0.0)
+    Estado = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".estado", "estado", 0)
+    V1 = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".v1", "v1", 0.0)
+    V2 = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".v2", "v2", 0.0)
+    V3 = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".v3", "v3", 0.0)
+    I1 = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".i1", "i1", 0.0)
+    I2 = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".i2", "i2", 0.0)
+    I3 = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".i3", "i3", 0.0)
+    PA = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".pa", "pa", 0.0)
+    Temperatura = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".temperatura", "temperatura", 0.0)
+    Raislamiento = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".raislamiento", "raislamiento", 0.0)
+    EA = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".ea", "ea", 0.0)
+    EA_hoy = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".ea_hoy", "ea_hoy", 0.0)
+    Regulacion = await myobj.add_variable("ns=2;s=" + nombre_pcs + ".regulacion", "regulacion", 0.0)
+
+    parametros_pcs = [ PA_CARGA, PA_DESCARGA, Estado, PA, Temperatura, Raislamiento, EA, EA_hoy, Regulacion]
+    tensiones_pcs = [ V1, V2, V3 ]
+    intensidades_pcs = [ I1, I2, I3 ]
+
+    await activar_writable(parametros_pcs)
+    return(tensiones_pcs, intensidades_pcs)
+
+async def BateriaSchema(server, idx, nombre_bateria):    
+    myobj = await server.nodes.objects.add_object(idx, nombre_bateria)
+
+    Estado_Contenedor1 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".estado_cont1", "estado_cont1", 0.0)
+    Estado_Contenedor2 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".estado_cont2", "estado_cont2", 0.0)
+    Estado_Contenedor3 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".estado_cont3", "estado_cont3", 0.0)
+    Temp_Cabin1 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".temp_cabin1", "temp_cabin1", 0.0)
+    Temp_Cabin2 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".temp_cabin2", "temp_cabin2", 0.0)
+    Temp_Cabin3 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".temp_cabin3", "temp_cabin3", 0.0)
+    Temp_Cabin4 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".temp_cabin4", "temp_cabin4", 0.0)
+
+    SOC = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".soc", "soc", 0.0)
+    PA = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".pa", "pa", 0.0)
+    EA_Carga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".ea_carga", "ea_carga", 0.0)
+    EA_Descarga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".ea_descarga", "ea_descarga", 0.0)
+    EA_Carga_hoy = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".ea_carga_hoy", "ea_carga_hoy", 0.0)
+    EA_Descarga_hoy = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".ea_descarga_hoy", "ea_descarga_hoy", 0.0)
+    Capacidad_Carga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".capacidad_carga", "capacidad_carga", 0.0)
+    Capacidad_Descarga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".capacidad_descarga", "capacidad_descarga", 0.0)
+    V1 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".v1", "v1", 0.0)
+    V2 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".v2", "v2", 0.0)
+    V3 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".v3", "v3", 0.0)
+    I1 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".i1", "i1", 0.0)
+    I2 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".i2", "i2", 0.0)
+    I3 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".i3", "i3", 0.0)
+
+    BCU1_estado = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_estado", "bcu1_estado", 0.0)
+    BCU1_soc = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_soc", "bcu1_soc", 0.0)
+    BCU1_soh = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_soh", "bcu1_soh", 0.0)
+    BCU1_v = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_v", "bcu1_v", 0.0)
+    BCU1_i = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_i", "bcu1_i", 0.0)
+    BCU1_pa = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_pa", "bcu1_pa", 0.0)
+    BCU1_soe = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_soe", "bcu1_soe", 0.0)
+    BCU1_dod = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_dod", "bcu1_dod", 0.0)
+    BCU1_capacidad_carga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_capacidad_carga", "bcu1_capacidad_carga", 0.0)
+    BCU1_capacidad_descarga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_capacidad_descarga", "bcu1_capacidad_descarga", 0.0)
+
+    BCU2_estado = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_estado", "bcu2_estado", 0.0)
+    BCU2_soc = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_soc", "bcu2_soc", 0.0)
+    BCU2_soh = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_soh", "bcu2_soh", 0.0)
+    BCU2_v = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_v", "bcu2_v", 0.0)
+    BCU2_i = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_i", "bcu2_i", 0.0)
+    BCU2_pa = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_pa", "bcu2_pa", 0.0)
+    BCU2_soe = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_soe", "bcu2_soe", 0.0)
+    BCU2_dod = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_dod", "bcu2_dod", 0.0)
+    BCU2_capacidad_carga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_capacidad_carga", "bcu2_capacidad_carga", 0.0)
+    BCU2_capacidad_descarga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_capacidad_descarga", "bcu2_capacidad_descarga", 0.0)
+
+    cabinets_bateria = [ Temp_Cabin1, Temp_Cabin2, Temp_Cabin3, Temp_Cabin4, Estado_Contenedor1, Estado_Contenedor2, Estado_Contenedor3]
+    parametros_bateria = [ SOC, PA, EA_Carga, EA_Descarga, EA_Carga_hoy, EA_Descarga_hoy, Capacidad_Carga, Capacidad_Descarga]
+    tensiones_bateria = [ V1, V2, V3 ]
+    intensidades_bateria = [ I1, I2, I3 ]
+
+    #await activar_writable(parametros_bateria)
+    return(tensiones_bateria, intensidades_bateria)
