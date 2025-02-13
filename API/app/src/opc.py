@@ -1,14 +1,22 @@
 from opcua import ua
+from datetime import datetime
+import time
+
 from app.conexion import cliente_opc_create
 
 client = cliente_opc_create()
 
-variables_inversor = ["PA","PA_peak","EA","EA_hoy","Estado","Temperatura",
-    "Raislamiento","V1","V2","V3","I1","I2", "I3",
+variables_inversor = ["pa","pa_peak","ea","ea_hoy","estado","temperatura",
+    "raislamiento","v1","v2","v3","i1","i2", "i3",
     "vs1","vs2","vs3","vs4","vs5","vs6","vs7","vs8","vs9","vs10",
     "is1","is2","is3","is4","is5","is6","is7","is8","is9","is10"]
-variables_aarr = ["PA","PA1","PA2","PA3","EA","V1","V2","V3","I1","I2", "I3"]
-variables_emi = ["Rad1","Rad2","Tamb","Tpanel"]
+variables_aarr = ["pa","pa1","pa2","pa3","ea","v1","v2","v3","i1","i2", "i3"]
+variables_emi = ["rad1","rad2","tamb","tpanel"]
+
+def MarcaTemporal():
+    presentDate = datetime.now()
+    unix_timestamp = datetime.timestamp(presentDate)*1000
+    return(unix_timestamp)
 
 def obtenerNodos():
     root = client.get_root_node()
@@ -39,54 +47,66 @@ def escribirNodo(valor, variable):
 def ObtenerInversor(num_equipo):
     definicion = "ns=2;s=Inversor" + str(num_equipo) + "."
     variables = [definicion + s for s in variables_inversor]
-    data = {}
+    data = {"fecha": MarcaTemporal(), "inversor": num_equipo}
     for i in range(len(variables)):
-        data.update({variables[i]:client.get_node((variables[i])).get_value()})
+        data.update({variables_inversor[i]:client.get_node((variables[i])).get_value()})
     return(data)
 
 def ObtenerAARR(num_equipo):
     definicion = "ns=2;s=AARR" + str(num_equipo) + "."
     variables = [definicion + s for s in variables_aarr]
-    data = {}
+    data = {"fecha": MarcaTemporal(), "aarr": num_equipo}
     for i in range(len(variables)):
-        data.update({variables[i]:client.get_node((variables[i])).get_value()})
+        data.update({variables_aarr[i]:client.get_node((variables[i])).get_value()})
     return(data)
 
 def ObtenerEMI(num_equipo):
     definicion = "ns=2;s=EMI" + str(num_equipo) + "."
     variables = [definicion + s for s in variables_emi]
-    data = {}
+    data = {"fecha": MarcaTemporal(), "emi": num_equipo}
     for i in range(len(variables)):
-        data.update({variables[i]:client.get_node((variables[i])).get_value()})
+        data.update({variables_emi[i]:client.get_node((variables[i])).get_value()})
     return(data)
 
-def escribirInversor(num_equipo, data):
+def escribirInversor(data):
     data = data.__dict__
+    num_equipo = data['inversor']
+    del data['inversor']
     definicion = "ns=2;s=Inversor" + str(num_equipo) + "."
     variables = [definicion + s for s in variables_inversor]
+    variables_nomodificadas = []
     for i in range(len(data)):
         #print({variables[i]:data[variables_inversor[i]]})
         try:
-            client.get_node((variables[i])).set_value(ua.DataValue(ua.Variant(data[variables_inversor[i]], ua.VariantType.Double)))
+            client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_inversor[i]], ua.VariantType.Double)))
         except:
-            print({variables[i]:data[variables_inversor[i]]})
+            variables_nomodificadas.append(variables[i])
+    return(variables_nomodificadas)
 
-def escribirAARR(num_equipo, data):
+def escribirAARR(data):
     data = data.__dict__
+    num_equipo = data['aarr']
+    del data['aarr']
     definicion = "ns=2;s=AARR" + str(num_equipo) + "."
     variables = [definicion + s for s in variables_aarr]
+    variables_nomodificadas = []
     for i in range(len(data)):
         try:
-            client.get_node((variables[i])).set_value(ua.DataValue(ua.Variant(data[variables_aarr[i]], ua.VariantType.Double)))
+            client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_aarr[i]], ua.VariantType.Double)))
         except:
-            print({variables[i]:data[variables_aarr[i]]})
+            variables_nomodificadas.append(variables[i])
+    return(variables_nomodificadas)
 
-def escribirEMI(num_equipo, data):
+def escribirEMI(data):
     data = data.__dict__
+    num_equipo = data['emi']
+    del data['emi']
     definicion = "ns=2;s=EMI" + str(num_equipo) + "."
     variables = [definicion + s for s in variables_emi]
+    variables_nomodificadas = []
     for i in range(len(data)):
         try:
-            client.get_node((variables[i])).set_value(ua.DataValue(ua.Variant(data[variables_emi[i]], ua.VariantType.Double)))
+            client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_emi[i]], ua.VariantType.Double)))
         except:
-            print({variables[i]:data[variables_emi[i]]})
+            variables_nomodificadas.append(variables[i])
+    return(variables_nomodificadas)

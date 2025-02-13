@@ -7,21 +7,21 @@ async def InversorSchema(server, idx, nombre_inversor):
     myobj = await server.nodes.objects.add_object(idx, nombre_inversor)
 
     #Valores Inversor
-    PA = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".PA", "PA", 10.5)
-    PA_peak = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".PA_peak", "PA_peak", 10.5)
-    EA = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".EA", "EA", 26.7)
-    EA_hoy = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".EA_hoy", "EA_hoy", 0.0)
-    Estado = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".Estado", "Estado", 12)
-    Temperatura = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".Temperatura", "Temperatura", 58)
-    Raislamiento = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".Raislamiento", "Raislamiento", 950)
+    PA = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".pa", "pa", 10.5)
+    PA_peak = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".pa_peak", "Ppa_peak", 10.5)
+    EA = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".ea", "ea", 26.7)
+    EA_hoy = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".ea_hoy", "ea_hoy", 0.0)
+    Estado = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".estado", "estado", 12)
+    Temperatura = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".temperatura", "temperatura", 58)
+    Raislamiento = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".raislamiento", "raislamiento", 950)
 
     # Valores Alterna
-    V1 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".V1", "V1", 0.0)
-    V2 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".V2", "V2", 0.0)
-    V3 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".V3", "V3", 0.0)
-    I1 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".I1", "I1", 0.0)
-    I2 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".I2", "I2", 0.0)
-    I3 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".I3", "I3", 0.0)
+    V1 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".v1", "v1", 0.0)
+    V2 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".v2", "v2", 0.0)
+    V3 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".v3", "v3", 0.0)
+    I1 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".i1", "i1", 0.0)
+    I2 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".i2", "i2", 0.0)
+    I3 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".i3", "i3", 0.0)
 
     #Tensiones Strings
     vs1 = await myobj.add_variable("ns=2;s=" + nombre_inversor + ".vs1", "vs1", 0.0)
@@ -57,17 +57,17 @@ async def InversorSchema(server, idx, nombre_inversor):
 async def AARRSchema(server, idx, nombre_aarr):    
     myobj = await server.nodes.objects.add_object(idx, nombre_aarr)
 
-    V1 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".V1", "V1", 0.0)
-    V2 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".V2", "V2", 0.0)
-    V3 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".V3", "V3", 0.0)
-    I1 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".I1", "I1", 0.0)
-    I2 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".I2", "I2", 0.0)
-    I3 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".I3", "I3", 0.0)
-    PA1 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".PA1", "PA1", 0.0)
-    PA2 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".PA2", "PA2", 0.0)
-    PA3 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".PA3", "PA3", 0.0)
-    PA = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".PA", "PA", 0.0)
-    EA = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".EA", "EA", 0.0)
+    V1 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".v1", "v1", 0.0)
+    V2 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".v2", "v2", 0.0)
+    V3 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".v3", "v3", 0.0)
+    I1 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".i1", "i1", 0.0)
+    I2 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".i2", "i2", 0.0)
+    I3 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".i3", "i3", 0.0)
+    PA1 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".pa1", "pa1", 0.0)
+    PA2 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".pa2", "pa2", 0.0)
+    PA3 = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".pa3", "pa3", 0.0)
+    PA = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".pa", "Ppa", 0.0)
+    EA = await myobj.add_variable("ns=2;s=" + nombre_aarr + ".ea", "ea", 0.0)
 
     parametros_aarr = [ PA, PA1, PA2, PA3, EA ]
     tensiones_aarr = [ V1, V2, V3 ]
@@ -80,12 +80,12 @@ async def EMISchema(server, idx, nombre_emi):
     myobj = await server.nodes.objects.add_object(idx, nombre_emi)
 
     # Radiaciones
-    Rad1 = await myobj.add_variable("ns=2;s=" + nombre_emi + ".Rad1", "Rad1", 0.0)
-    Rad2 = await myobj.add_variable("ns=2;s=" + nombre_emi + ".Rad2", "Rad2", 0.0)
+    Rad1 = await myobj.add_variable("ns=2;s=" + nombre_emi + ".rad1", "rad1", 0.0)
+    Rad2 = await myobj.add_variable("ns=2;s=" + nombre_emi + ".rad2", "rad2", 0.0)
 
     #Temperaturas
-    Tamb = await myobj.add_variable("ns=2;s=" + nombre_emi + ".Tamb", "Tamb", 0.0)
-    Tpanel = await myobj.add_variable("ns=2;s=" + nombre_emi + ".Tpanel", "Tpanel", 0.0)
+    Tamb = await myobj.add_variable("ns=2;s=" + nombre_emi + ".tamb", "tamb", 0.0)
+    Tpanel = await myobj.add_variable("ns=2;s=" + nombre_emi + ".tpanel", "tpanel", 0.0)
 
     radiaciones_emi = [ Rad1, Rad2 ]
     temperaturas_emi = [ Tamb, Tpanel ]

@@ -55,17 +55,17 @@ async def create_notification(variable: str, valor: float):
     (value1, value2) = escribirNodo(valor, variable)
     return({"Variable": variable, 'Valor_anterior': value1, 'Valor': value2})
 
-@router.post("/Write/Inversor/{num_equipo}", summary="Modificar variables del Inversor")
-async def create_notification(num_equipo: int, data: InversorRequest = Body(...)):
-    escribirInversor(num_equipo, data)
-    return(data)
+@router.post("/Write/Inversor", summary="Modificar variables del Inversor")
+async def create_notification(data: InversorRequest = Body(...)):
+    (variables_nomodificadas) = escribirInversor(data)
+    return({"no_modificado": variables_nomodificadas})
 
-@router.post("/Write/AARR/{num_equipo}", summary="Modificar variable del AARR")
-async def create_notification(num_equipo: int, data: AARRRequest = Body(...)):
-    escribirAARR(num_equipo, data)
-    return(data)
+@router.post("/Write/AARR", summary="Modificar variable del AARR")
+async def create_notification(data: AARRRequest = Body(...)):
+    (variables_nomodificadas) = escribirAARR(data)
+    return({"no_modificado": variables_nomodificadas})
 
-@router.post("/Write/EMI/{num_equipo}", summary="Modificar variable de la EMI")
-async def create_notification(num_equipo: int, data: EMIRequest = Body(...)):
-    escribirEMI(num_equipo, data)
-    return(data)
+@router.post("/Write/EMI", summary="Modificar variable de la EMI")
+async def create_notification(data: EMIRequest = Body(...)):
+    (variables_nomodificadas) = escribirEMI(data)
+    return({"no_modificado": variables_nomodificadas})

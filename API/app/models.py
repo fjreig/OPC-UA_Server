@@ -34,56 +34,58 @@ class OPCRequest(BaseModel):
         }
 
 class InversorRequest(BaseModel):
-    PA: float
-    PA_peak: float
-    EA: float
-    EA_hoy: float
-    Estado: int
-    Temperatura: float
-    Raislamiento: float
-    V1: float
-    V2: float
-    V3: float
-    I1: float
-    I2: float
-    I3: float
-    vs1: float
-    vs2: float
-    vs3: float
-    vs4: float
-    vs5: float
-    vs6: float
-    vs7: float
-    vs8: float
-    vs9: float
-    vs10: float
-    is1: float
-    is2: float
-    is3: float
-    is4: float
-    is5: float
-    is6: float
-    is7: float
-    is8: float
-    is9: float
-    is10: float
+    inversor: int
+    pa: float = None
+    pa_peak: float = None
+    ea: float = None
+    ea_hoy: float = None
+    estado: int = None
+    temperatura: float = None
+    raislamiento: float = None
+    V1: float = None
+    V2: float = None
+    V3: float = None
+    I1: float = None
+    I2: float = None
+    I3: float = None
+    vs1: float = None
+    vs2: float = None
+    vs3: float = None
+    vs4: float = None
+    vs5: float = None
+    vs6: float = None
+    vs7: float = None
+    vs8: float = None
+    vs9: float = None
+    vs10: float = None
+    is1: float = None
+    is2: float = None
+    is3: float = None
+    is4: float = None
+    is5: float = None
+    is6: float = None
+    is7: float = None
+    is8: float = None
+    is9: float = None
+    is10: float = None
 
     class Config:
         json_schema_extra = {
             "example": {
-                'PA' : 0,
-                'PA_peak' : 0,
-                'EA' : 0,
-                'EA_hoy' : 0,
-                'Estado' : 0,
-                'Temperatura' : 0,
-                'Raislamiento' : 0,
-                'V1' : 0,
-                'V2' : 0,
-                'V3' : 0,
-                'I1' : 0,
-                'I2' : 0,
-                'I3' : 0,
+                'inversor': 1,
+                'pa' : 0,
+                'pa_peak' : 0,
+                'ea' : 0,
+                'ea_hoy' : 0,
+                'estado' : 0,
+                'temperatura' : 0,
+                'raislamiento' : 0,
+                'v1' : 0,
+                'v2' : 0,
+                'v3' : 0,
+                'i1' : 0,
+                'i2' : 0,
+                'i3' : 0,
                 'vs1' : 0,
                 'vs2' : 0,
                 'vs3' : 0,
@@ -108,47 +110,51 @@ class InversorRequest(BaseModel):
         }
 
 class AARRRequest(BaseModel):
-    PA: float
-    PA1: float
-    PA2: float
-    PA3: float
-    EA: float
-    V1: float
-    V2: float
-    V3: float
-    I1: float
-    I2: float
-    I3: float
+    aarr: int
+    pa: float = None
+    pa1: float = None
+    pa2: float = None
+    pa3: float = None
+    ea: float = None
+    v1: float = None
+    v2: float = None
+    v3: float = None
+    i1: float = None
+    i2: float = None
+    i3: float = None
 
     class Config:
         json_schema_extra = {
             "example": {
-                'PA' : 0,
-                'PA1' : 0,
-                'PA2' : 0,
-                'PA3' : 0,
-                'EA' : 0,
-                'V1' : 0,
-                'V2' : 0,
-                'V3' : 0,
-                'I1' : 0,
-                'I2' : 0,
-                'I3' : 0
+                'aarr': 1,
+                'pa' : 0,
+                'pa1' : 0,
+                'pa2' : 0,
+                'pa3' : 0,
+                'ea' : 0,
+                'v1' : 0,
+                'v2' : 0,
+                'v3' : 0,
+                'i1' : 0,
+                'i2' : 0,
+                'i3' : 0
             }
         }
 
 class EMIRequest(BaseModel):
-    Rad1: float
-    Rad2: float
-    Tamb: float
-    Tpanel: float
+    emi: int
+    rad1: float = None
+    rad2: float = None
+    tamb: float = None
+    tpanel: float = None
 
     class Config:
         json_schema_extra = {
             "example": {
-                'Rad1' : 0,
-                'Rad2' : 0,
-                'Tamb' : 0,
-                'Tpanel' : 0
+                'emi': 1,
+                'rad1' : 0,
+                'rad2' : 0,
+                'tamb' : 0,
+                'tpanel' : 0
             }
         }
