@@ -13,6 +13,14 @@ variables_inversor = ["pa","pa_peak","ea","ea_hoy","estado","temperatura",
 variables_aarr = ["pa","pa1","pa2","pa3","ea","v1","v2","v3","i1","i2", "i3"]
 variables_emi = ["rad1","rad2","tamb","tpanel"]
 
+variables_pcs = ['pa_carga','pa_descarga','estado','pa','temperatura','raislamiento','ea','ea_hoy','regulacion','v1','v2','v3','i1','i2','i3']
+variables_bomba = ['estado','pa','frecuencia','horas']
+variables_bat = ['bcu1_estado','bcu1_v','bcu1_i', 'bcu1_pa', 'bcu1_soc', 'bcu1_soh', 'bcu1_soe', 'bcu1_dod', 'bcu1_capacidad_carga', 'bcu1_capacidad_descarga',
+    'bcu2_estado', 'bcu2_v', 'bcu2_i', 'bcu2_pa', 'bcu2_soc', 'bcu2_soh', 'bcu2_soe', 'bcu2_dod', 'bcu2_capacidad_carga', 'bcu2_capacidad_descarga',
+    'temp_cabin1', 'temp_cabin2', 'temp_cabin3', 'temp_cabin4', 'estado_cont1','estado_cont2','estado_cont3',
+    'soc','pa','ea_carga','ea_descarga','ea_carga_hoy','ea_descarga_hoy','capacidad_carga','capacidad_descarga',
+    'v1', 'v2','v3' ,'i1', 'i2', 'i3' ]
+
 def MarcaTemporal():
     presentDate = datetime.now()
     unix_timestamp = datetime.timestamp(presentDate)*1000
@@ -68,6 +76,30 @@ def ObtenerEMI(num_equipo):
         data.update({variables_emi[i]:client.get_node((variables[i])).get_value()})
     return(data)
 
+def ObtenerPCS(num_equipo):
+    definicion = "ns=2;s=PCS" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_pcs]
+    data = {"fecha": MarcaTemporal(), "pcs": num_equipo}
+    for i in range(len(variables)):
+        data.update({variables_pcs[i]:client.get_node((variables[i])).get_value()})
+    return(data)
+
+def ObtenerBateria(num_equipo):
+    definicion = "ns=2;s=Bateria" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_bat]
+    data = {"fecha": MarcaTemporal(), "bateria": num_equipo}
+    for i in range(len(variables)):
+        data.update({variables_bat[i]:client.get_node((variables[i])).get_value()})
+    return(data)
+
+def ObtenerBomba(num_equipo):
+    definicion = "ns=2;s=Bomba" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_bomba]
+    data = {"fecha": MarcaTemporal(), "bomba": num_equipo}
+    for i in range(len(variables)):
+        data.update({variables_bomba[i]:client.get_node((variables[i])).get_value()})
+    return(data)
+
 def escribirInversor(data):
     data = data.__dict__
     num_equipo = data['inversor']
@@ -107,6 +139,48 @@ def escribirEMI(data):
     for i in range(len(data)):
         try:
             client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_emi[i]], ua.VariantType.Double)))
+        except:
+            variables_nomodificadas.append(variables[i])
+    return(variables_nomodificadas)
+
+def escribirPCS(data):
+    data = data.__dict__
+    num_equipo = data['pcs']
+    del data['pcs']
+    definicion = "ns=2;s=PCS" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_pcs]
+    variables_nomodificadas = []
+    for i in range(len(data)):
+        try:
+            client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_pcs[i]], ua.VariantType.Double)))
+        except:
+            variables_nomodificadas.append(variables[i])
+    return(variables_nomodificadas)
+
+def escribirBateria(data):
+    data = data.__dict__
+    num_equipo = data['bateria']
+    del data['bateria']
+    definicion = "ns=2;s=Bateria" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_bat]
+    variables_nomodificadas = []
+    for i in range(len(data)):
+        try:
+            client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_bat[i]], ua.VariantType.Double)))
+        except:
+            variables_nomodificadas.append(variables[i])
+    return(variables_nomodificadas)
+
+def escribirBomba(data):
+    data = data.__dict__
+    num_equipo = data['bomba']
+    del data['bomba']
+    definicion = "ns=2;s=Bomba" + str(num_equipo) + "."
+    variables = [definicion + s for s in variables_bomba]
+    variables_nomodificadas = []
+    for i in range(len(data)):
+        try:
+            client.get_node(variables[i]).set_value(ua.DataValue(ua.Variant(data[variables_bomba[i]], ua.VariantType.Double)))
         except:
             variables_nomodificadas.append(variables[i])
     return(variables_nomodificadas)

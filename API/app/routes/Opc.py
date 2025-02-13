@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends, APIRouter, Body
 from sqlalchemy.orm import Session
 from fastapi import Query
 
-from app.models import Modelo_opc, InversorRequest, AARRRequest, EMIRequest
+from app.models import Modelo_opc, InversorRequest, AARRRequest, EMIRequest, PCSRequest, BombaRequest, bateriaRequest
 from app.database import SessionLocal
 from app.src.opc import (
     obtenerNodos, 
@@ -11,10 +11,18 @@ from app.src.opc import (
     ObtenerInversor,
     ObtenerAARR,
     ObtenerEMI,
+    ObtenerPCS, 
+    ObtenerBateria, 
+    ObtenerBomba,
     escribirInversor,
     escribirAARR,
-    escribirEMI
+    escribirEMI,
+    escribirPCS, 
+    escribirBateria, 
+    escribirBomba
 )
+
+equipos_list = ['Inversor', 'AARR', 'EMI', 'PCS', 'Bateria', 'Bomba']
 
 router = APIRouter()
 
@@ -41,13 +49,19 @@ async def read_notification_id(variable: str, db: Session = Depends(get_db)):
     return({"Variable": variable, 'Valor': value})
 
 @router.get("/Read/Equipo/{num_equipo}", summary="Leer variable por equipo")
-async def read_notification_id(num_equipo: int, equipo: str = Query("Inversor", enum=['Inversor', 'AARR', 'EMI']), db: Session = Depends(get_db)):
+async def read_notification_id(num_equipo: int, equipo: str = Query("Inversor", enum=equipos_list), db: Session = Depends(get_db)):
     if equipo == 'Inversor':
         valores = ObtenerInversor(num_equipo)
     elif equipo == 'AARR':
         valores = ObtenerAARR(num_equipo)
     elif equipo == 'EMI':
         valores = ObtenerEMI(num_equipo)
+    elif equipo == 'PCS':
+        valores = ObtenerPCS(num_equipo)
+    elif equipo == 'Bateria':
+        valores = ObtenerBateria(num_equipo)
+    elif equipo == 'Bomba':
+        valores = ObtenerBomba(num_equipo)
     return(valores)
 
 @router.post("/Write/{variable}/{valor}", summary="Modificar variable")
@@ -68,4 +82,19 @@ async def create_notification(data: AARRRequest = Body(...)):
 @router.post("/Write/EMI", summary="Modificar variable de la EMI")
 async def create_notification(data: EMIRequest = Body(...)):
     (variables_nomodificadas) = escribirEMI(data)
+    return({"no_modificado": variables_nomodificadas})
+
+@router.post("/Write/PCS", summary="Modificar variable de la PCS")
+async def create_notification(data: PCSRequest = Body(...)):
+    (variables_nomodificadas) = escribirPCS(data)
+    return({"no_modificado": variables_nomodificadas})
+
+@router.post("/Write/Bateria", summary="Modificar variable de la Bateria")
+async def create_notification(data: bateriaRequest = Body(...)):
+    (variables_nomodificadas) = escribirBateria(data)
+    return({"no_modificado": variables_nomodificadas})
+
+@router.post("/Write/Bomba", summary="Modificar variable de la Bomba")
+async def create_notification(data: BombaRequest = Body(...)):
+    (variables_nomodificadas) = escribirBomba(data)
     return({"no_modificado": variables_nomodificadas})
