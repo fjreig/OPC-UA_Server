@@ -37,6 +37,8 @@ async def main():
     (v_string_Inv1, i_string_Inv1) = await InversorSchema(server, idx, "Inversor1")
     (tensiones_aarr, intensidades_aarr) = await AARRSchema(server, idx, "AARR1")
     (radiaciones_emi1, temperaturas_emi1) = await EMISchema(server, idx, "EMI1")
+    (tensiones_pcs, intensidades_pcs) = await PCSSchema(server, idx, "PCS1")
+    (tensiones_bateria, intensidades_bateria) = await PCSSchema(server, idx, "Bateria1")
   
     #_logger.info("Starting server!")
     async with server:

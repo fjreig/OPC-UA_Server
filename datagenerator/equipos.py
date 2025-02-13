@@ -143,7 +143,7 @@ async def BateriaSchema(server, idx, nombre_bateria):
     I2 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".i2", "i2", 0.0)
     I3 = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".i3", "i3", 0.0)
 
-    BCU1_estado = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_estado", "bcu1_estado", 0.0)
+    BCU1_estado = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_estado", "bcu1_estado", 0)
     BCU1_soc = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_soc", "bcu1_soc", 0.0)
     BCU1_soh = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_soh", "bcu1_soh", 0.0)
     BCU1_v = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_v", "bcu1_v", 0.0)
@@ -154,7 +154,7 @@ async def BateriaSchema(server, idx, nombre_bateria):
     BCU1_capacidad_carga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_capacidad_carga", "bcu1_capacidad_carga", 0.0)
     BCU1_capacidad_descarga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu1_capacidad_descarga", "bcu1_capacidad_descarga", 0.0)
 
-    BCU2_estado = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_estado", "bcu2_estado", 0.0)
+    BCU2_estado = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_estado", "bcu2_estado", 0)
     BCU2_soc = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_soc", "bcu2_soc", 0.0)
     BCU2_soh = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_soh", "bcu2_soh", 0.0)
     BCU2_v = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_v", "bcu2_v", 0.0)
@@ -165,6 +165,8 @@ async def BateriaSchema(server, idx, nombre_bateria):
     BCU2_capacidad_carga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_capacidad_carga", "bcu2_capacidad_carga", 0.0)
     BCU2_capacidad_descarga = await myobj.add_variable("ns=2;s=" + nombre_bateria + ".bcu2_capacidad_descarga", "bcu2_capacidad_descarga", 0.0)
 
+    BCU1 = [ BCU1_estado, BCU1_v, BCU1_i, BCU1_pa, BCU1_soc, BCU1_soh, BCU1_soe, BCU1_dod, BCU1_capacidad_carga, BCU1_capacidad_descarga]
+    BCU2 = [ BCU2_estado, BCU2_v, BCU2_i, BCU2_pa, BCU2_soc, BCU2_soh, BCU2_soe, BCU2_dod, BCU2_capacidad_carga, BCU2_capacidad_descarga]
     cabinets_bateria = [ Temp_Cabin1, Temp_Cabin2, Temp_Cabin3, Temp_Cabin4, Estado_Contenedor1, Estado_Contenedor2, Estado_Contenedor3]
     parametros_bateria = [ SOC, PA, EA_Carga, EA_Descarga, EA_Carga_hoy, EA_Descarga_hoy, Capacidad_Carga, Capacidad_Descarga]
     tensiones_bateria = [ V1, V2, V3 ]
