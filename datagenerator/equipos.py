@@ -91,6 +91,17 @@ async def EMISchema(server, idx, nombre_emi):
     temperaturas_emi = [ Tamb, Tpanel ]
     return(radiaciones_emi, temperaturas_emi)
 
+async def BombaSchema(server, idx, nombre_bomba):    
+    myobj = await server.nodes.objects.add_object(idx, nombre_bomba)
+
+    Estado = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".estado", "estado", 0)
+    PA = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".pa", "pa", 0.0)
+    Frecuencia = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".frecuencia", "frecuencia", 0.0)
+    Horas = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".horas", "horas", 0.0)
+
+    parametros_bomba = [ Estado, PA, Frecuencia, Horas ]
+    await activar_writable(parametros_bomba)
+
 async def PCSSchema(server, idx, nombre_pcs):    
     myobj = await server.nodes.objects.add_object(idx, nombre_pcs)
 
