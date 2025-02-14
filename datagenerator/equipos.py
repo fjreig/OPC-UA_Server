@@ -79,14 +79,25 @@ async def EMISchema(server, idx, nombre_emi):
     temperaturas_emi = [ Tamb, Tpanel ]
     return(radiaciones_emi, temperaturas_emi)
 
-async def BombaSchema(server, idx, nombre_bomba):    
+async def VariadorSchema(server, idx, nombre_bomba):    
     myobj = await server.nodes.objects.add_object(idx, nombre_bomba)
     Estado = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".estado", "estado", 0)
     PA = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".pa", "pa", 0.0)
     Frecuencia = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".frecuencia", "frecuencia", 0.0)
+    Frecuencia_Consigna = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".frecuencia_consigna", "frecuencia_consigna", 0.0)
     Horas = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".horas", "horas", 0.0)
-    parametros_bomba = [ Estado, PA, Frecuencia, Horas ]
-    await activar_writable(parametros_bomba)
+    Alarma = await myobj.add_variable("ns=2;s=" + nombre_bomba + ".alarma", "alarma", 0.0)
+    parametros_variador = [ Estado, PA, Frecuencia, Frecuencia_Consigna, Horas, Alarma ]
+    await activar_writable(parametros_variador)
+
+async def DiferencialSchema(server, idx, nombre_emi):    
+    myobj = await server.nodes.objects.add_object(idx, nombre_emi)
+    Prealarma = await myobj.add_variable("ns=2;s=" + nombre_emi + ".prealarma", "prealarma", 0.0)
+    Disparado = await myobj.add_variable("ns=2;s=" + nombre_emi + ".disparado", "disparado", 0.0)
+    Disparo_Comunicaciones = await myobj.add_variable("ns=2;s=" + nombre_emi + ".disparo_comunicaciones", "disparo_comunicaciones", 0.0)
+    Retardo_Disparo = await myobj.add_variable("ns=2;s=" + nombre_emi + ".retardo_disparo", "retardo_disparo", 500.0)
+    Corriente_Disparo = await myobj.add_variable("ns=2;s=" + nombre_emi + ".corriente_disparo", "corriente_disparo", 300.0)
+    parametros_diferencial = [ Prealarma, Disparado, Disparo_Comunicaciones, Retardo_Disparo, Corriente_Disparo ]
 
 async def PCSSchema(server, idx, nombre_pcs):    
     myobj = await server.nodes.objects.add_object(idx, nombre_pcs)

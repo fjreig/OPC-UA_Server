@@ -3,7 +3,7 @@ import logging
 import random
 from asyncua import Server, ua
 
-from equipos import InversorSchema, AARRSchema, EMISchema, PCSSchema, BateriaSchema, BombaSchema
+from equipos import InversorSchema, AARRSchema, EMISchema, PCSSchema, BateriaSchema, VariadorSchema, DiferencialSchema
 
 vs_min_val = 500
 vs_max_val = 700
@@ -39,7 +39,8 @@ async def main():
     (radiaciones_emi1, temperaturas_emi1) = await EMISchema(server, idx, "EMI1")
     (tensiones_pcs, intensidades_pcs) = await PCSSchema(server, idx, "PCS1")
     (tensiones_bateria, intensidades_bateria) = await BateriaSchema(server, idx, "Bateria1")
-    await BombaSchema(server, idx, "Bomba1")
+    await VariadorSchema(server, idx, "Bomba1")
+    await DiferencialSchema(server, idx, "Diferencial1")
   
     #_logger.info("Starting server!")
     async with server:
